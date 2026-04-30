@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPORTES SIP - CyberTilines</title>
+    <link rel="stylesheet" href="paginaProyecto_CYBERTILINES.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        #pagina-protegida { display: none; } 
+
+        .login-fullscreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #000000, #172554);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex; justify-content: center; align-items: center; z-index: 9999;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-btn {
+            background-color: #ffbf00 !important;
+            color: #0f172a !important;
+            border: 2px solid #ffbf00;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #e6ac00 !important;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 191, 0, 0.4);
+        }
+
+        .modal-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeInScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .registro-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: slideInRight 0.5s ease forwards;
+        }
+
+        .input-group:nth-child(1) { animation-delay: 0.1s; }
+        .input-group:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .submit-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 191, 0, 0.4);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="pantalla-login" class="login-fullscreen">
+    
+    <div class="bg-text-container">
+        <div class="scrolling-text">
+            <span>SIX SEVEN REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            <span>REPORTES SIP REPORTES SIP REPORTES SIP REPORTES SIP</span>
+            </div>
+    </div>
+
+    <div class="modal-card">
+        <h2 id="titulo-form" style="text-align: center; color: white; margin-bottom: 20px;">INICIAR SESIÓN</h2>
+        
+        <form class="custom-form" id="form-login" autocomplete="off">
+            <div class="input-group">
+                <label style="color: #ccc; font-size: 12px;">CORREO INSTITUCIONAL</label>
+                <input type="email" id="loginUserSip" placeholder="Correo SIP" required autocomplete="new-password">
+            </div>
+            
+            <div class="input-group">
+                <label style="color: #ccc; font-size: 12px;">CONTRASEÑA</label>
+                <input type="password" id="loginPassSip" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+
+            <label class="remember-container" style="cursor: pointer; user-select: none; display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                <div class="custom-checkbox">
+                    <input type="checkbox" id="recordarme" style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                    <span class="checkmark"></span>
+                </div>
+                <span style="color: white; font-size: 14px;">Recordarme</span>
+            </label>
+
+            <button type="button" id="btnLogin" class="submit-btn">INGRESAR</button>
+            
+            <p style="text-align: center; margin-top: 15px; color: white; font-size: 14px;">
+                ¿Eres nuevo? 
+                <a href="#" id="ir-a-registro" style="color: #ffbf00; text-decoration: none;">¡Crea tu cuenta aquí!</a>
+            </p>
+        </form>
+
+        <form class="custom-form" id="form-registro" style="display: none;" autocomplete="off">
+            <div class="input-group">
+                <label style="color: #ccc; font-size: 11px;">NOMBRE COMPLETO</label>
+                <input type="text" id="regNombre" placeholder="Nombre, apellido, apellido." required>
+            </div>
+            <div class="registro-grid">
+                <div class="input-group">
+                    <label style="color: #ccc; font-size: 11px;">RUT</label>
+                    <input type="text" id="regRut" placeholder="RUT sin Guion ni Puntos." required>
+                </div>
+                <div class="input-group">
+                    <label style="color: #ccc; font-size: 11px;">CORREO INST.</label>
+                    <input type="email" id="regEmailSip" placeholder="@sip.cl" required autocomplete="off">
+                </div>
+            </div>
+            <div class="registro-grid">
+                <div class="input-group">
+                    <label style="color: #ccc; font-size: 11px;">CONTRASEÑA</label>
+                    <input type="password" id="regPassSip" required autocomplete="new-password" placeholder="••••••••">
+                </div>
+                <div class="input-group">
+                    <label style="color: #ccc; font-size: 11px;">CONFIRMAR</label>
+                    <input type="password" id="regConfirmPassSip" required autocomplete="new-password" placeholder="••••••••">
+                </div>
+            </div>
+            <button type="button" id="btnRegister" class="submit-btn">REGISTRARME</button>
+    <p style="text-align: center; margin-top: 15px; color: white; font-size: 14px;">
+                <a href="#" id="ir-a-login" style="color: #ffbf00; text-decoration: none;">¡Volver al Inicio de Sesión!</a>
+            </p>
+        </form>
+
+        <p id="msg" style="margin-top: 15px; font-weight: bold; text-align: center; color: #ff4c4c; min-height: 20px;"></p>
+        
+    </div> </div> <div id="pagina-protegida">
+        <header class="main-header">
+            <div class="container header-content">
+                <div class="logo-area">
+                    <h1>REPORTES <span class="text-yellow">SIP</span></h1>
+                    <p class="subtitle">Cyber<span class="text-white">Tilines</span></p>
+                </div>
+                <button class="login-btn" id="btnCerrarSesion">CERRAR SESIÓN</button>
+            </div>
+            <div class="header-line"></div>
+        </header>
+
+        <main class="container">
+        <section class="hero-section">
+            <div class="image-box">
+                <img src="sipcol1.jpg" alt="Preview" class="img-fluid">
+            </div>
+            
+            <div class="info-column">
+                <div class="info-content">
+                    <h3 class="text-yellow">REPORTES SIP - ¿Qué es?</h3>
+                    
+                    <div class="info-item">
+                        <h4><span class="text-yellow">01.</span> ¿Para qué sirve?</h4>
+                        <p>Esta plataforma ha sido diseñada para centralizar y agilizar el levantamiento de incidencias técnicas. Permite a la comunidad estudiantil informar sobre fallas en laboratorios, equipos o infraestructura de manera formal y organizada.</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4><span class="text-yellow">02.</span> Guía de Uso</h4>
+                        <p>El proceso es intuitivo: basta con autenticarse en el sistema, completar el formulario con los detalles del suceso y adjuntar una evidencia visual. El equipo técnico recibirá la alerta en tiempo real para su evaluación.</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4><span class="text-yellow">03.</span> Impacto en la Red SIP</h4>
+                        <p>La importancia radica en mantener la continuidad educativa. Al reportar activamente, garantizamos que las herramientas tecnológicas de nuestros liceos estén siempre operativas para el aprendizaje de excelencia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="report-screen" class="overlay">
+        <div class="modal-card">
+            <a href="#" class="back-arrow">← VOLVER</a>
+            <h2>NUEVO REPORTE</h2>
+            <form class="custom-form">
+                <div class="input-group">
+                    <label>TÍTULO DEL REPORTE</label>
+                    <input type="text" placeholder="Ej: Falla en equipo sala 4">
+                </div>
+                <div class="input-group">
+                    <label>DESCRIPCIÓN DEL REPORTE</label>
+                    <textarea placeholder="Detalle lo ocurrido..." rows="4"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>REPORTE (ADJUNTAR ARCHIVO)</label>
+                    <input type="file" class="file-input">
+                </div>
+                <button type="button" class="submit-btn" onclick="alert('Esto en realidad no sirve, es decoracion :3')">ENVIAR REPORTE</button>
+            </form>
+        </div>
+    </div>
+
+            <section class="action-area">
+            <h2 class="question-text">¿Te gustaria publicar tu reporte?</h2>
+            <a href="#report-screen" class="main-button">¡Haz click aquí!</a>
+        </section>
+    </main>
+
+    <aside class="contact-card">
+        <h3>Contactanos!</h3>
+        <p>contacto@cybertilines.cl</p>
+        <p>+56 9 6767 6767</p>
+    </aside>
+
+
+<script type="module">
+    
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCybJ3x7mCXGoX_QvX-lww8DNsxCMl_jrc",
+        authDomain: "proyectopaginacybertilines.firebaseapp.com",
+        projectId: "proyectopaginacybertilines",
+        storageBucket: "proyectopaginacybertilines.firebasestorage.app",
+        messagingSenderId: "515231457085",
+        appId: "1:515231457085:web:82cfc9620965f170036f54"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const msg = document.getElementById('msg');
+    msg.innerText = "";
+
+    function validarRut(rut) {
+        const rutLimpio = rut.replace(/\./g, '').replace(/-/g, '').toUpperCase();
+        if (rutLimpio.length < 8) return false;
+        const cuerpo = rutLimpio.slice(0, -1);
+        const dv = rutLimpio.slice(-1);
+        let suma = 0, multiplo = 2;
+        for (let i = cuerpo.length - 1; i >= 0; i--) {
+            suma += multiplo * cuerpo.charAt(i);
+            multiplo = multiplo < 7 ? multiplo + 1 : 2;
+        }
+        const dvEsperado = 11 - (suma % 11);
+        let dvFinal = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
+        return dv === dvFinal;
+    }
+
+    document.getElementById('ir-a-registro').onclick = (e) => {
+        e.preventDefault();
+        document.getElementById('form-login').style.display = 'none';
+        document.getElementById('form-registro').style.display = 'flex';
+        document.getElementById('titulo-form').innerText = 'CREAR CUENTA';
+        msg.innerText = "";
+    };
+
+    document.getElementById('ir-a-login').onclick = (e) => {
+        e.preventDefault();
+        document.getElementById('form-registro').style.display = 'none';
+        document.getElementById('form-login').style.display = 'flex';
+        document.getElementById('titulo-form').innerText = 'INICIAR SESIÓN';
+        msg.innerText = "";
+    };
+
+document.getElementById('btnRegister').onclick = () => {
+    const rut = document.getElementById('regRut').value.trim();
+    const email = document.getElementById('regEmailSip').value.toLowerCase().trim();
+    const pass = document.getElementById('regPassSip').value;
+    const confirm = document.getElementById('regConfirmPassSip').value;
+
+    if (!validarRut(rut)) { msg.innerText = "Error: El RUT es inválido."; return; }
+    
+    const esValido = email.endsWith('@alumnos.sip.cl') || email.endsWith('@sip.cl');
+    if (!esValido) { msg.innerText = "Usa correo @alumnos.sip.cl o @sip.cl"; return; }
+
+    if (pass !== confirm) { msg.innerText = "Las contraseñas no coinciden."; return; }
+    if (pass.length < 6) { msg.innerText = "La contraseña debe de tener un mínimo 6 caracteres."; return; }
+
+    createUserWithEmailAndPassword(auth, email, pass)
+        .then(() => {
+            alert("¡Cuenta creada! Ahora inicia sesión manualmente.");
+            signOut(auth).then(() => location.reload());
+        })
+        .catch(err => {
+            if (err.code === 'auth/email-already-in-use') msg.innerText = "El correo ya existe.";
+            else msg.innerText = "Error: " + err.message;
+        });
+};
+    document.getElementById('btnLogin').onclick = () => {
+        const email = document.getElementById('loginUserSip').value.trim();
+        const pass = document.getElementById('loginPassSip').value;
+        const recordar = document.getElementById('recordarme').checked; 
+
+        const persistencia = recordar ? browserLocalPersistence : browserSessionPersistence;
+
+        setPersistence(auth, persistencia)
+            .then(() => {
+                return signInWithEmailAndPassword(auth, email, pass);
+            })
+            .catch(err => {
+                msg.innerText = "Correo o contraseña incorrectos.";
+            });
+    };
+
+    document.getElementById('btnCerrarSesion').onclick = () => signOut(auth);
+
+    onAuthStateChanged(auth, (user) => {
+        const loginScreen = document.getElementById('pantalla-login');
+        const mainContent = document.getElementById('pagina-protegida');
+        
+        if (user) {
+            loginScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+        } else {
+            loginScreen.style.display = 'flex';
+            mainContent.style.display = 'none';
+            
+            const inputUser = document.getElementById('loginUserSip');
+            const inputPass = document.getElementById('loginPassSip');
+            if (inputUser) inputUser.value = "";
+            if (inputPass) inputPass.value = "";
+        }
+    });
+</script>
+</body>
+</html>
